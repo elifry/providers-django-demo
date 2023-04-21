@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %} {{ viewName }} {% endblock %}
+{% load static tailwind_tags %}
+
+{% block content %}
+<main class="flex-1 pb-8">
+  <h2 class="max-w-6xl mx-auto mt-8 px-4 text-lg leading-6 font-medium text-dark-goldenrod sm:px-6 lg:px-8">{{ viewName }}</h2>
+
+  <div class="pt-2">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-white shadow overflow-hidden sm:rounded-md">
+          <ul role="list" class="divide-y divide-tan">
+              {% for the_provider in providers_list %}
+              {% include "providers/provider.html" %}
+              {% endfor %}
+          </ul>
+        </div>
+    </div>
+  </div>
+</main>
+{% endblock %}

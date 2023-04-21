@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %} {{ viewName }} {% endblock %}
+{% load static tailwind_tags %}
+
+{% block content %}
+<main class="flex-1 pb-8">
+  <!-- If the user is a build admin, show the start new build section -->
+  {% if user.is_staff %}
+  {% include "buildview/start-new-build.html" %}
+  {% endif %}
+
+  <h2 class="max-w-6xl mx-auto mt-8 px-4 text-lg leading-6 font-medium text-dark-goldenrod sm:px-6 lg:px-8">{{ viewName }} List</h2>
+
+  <div class="pt-2">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-white shadow overflow-hidden sm:rounded-md">
+          <ul role="list" class="divide-y divide-tan">
+              {% for the_build in object_list %}
+              {% include "buildview/buildlist.html" %}
+              {% endfor %}
+          </ul>
+        </div>
+    </div>
+  </div>
+</main>
+{% endblock %}

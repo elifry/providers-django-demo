@@ -1,0 +1,40 @@
+# Django
+*.orig
+*.pyc
+*.swp
+*.log
+*.pot
+__pycache__
+
+/.cargo_home/
+/.idea/
+
+# Visual Studio Code #
+.history
+
+# Node modules
+src/node_modules
+src/theme/static_src/node_modules
+
+# generated v8 coverage files
+cli/tests/.test_coverage/
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Test files
+try_*
+
+# Generated files from webpack
+/src/static
+
+# Database
+/src/db.sqlite3
+
+/tmp

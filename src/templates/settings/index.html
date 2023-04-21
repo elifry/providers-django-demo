@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static tags %}
+{% block title %} Settings {% endblock title %}
+
+{% block content %}
+<main class="min-h-full flex-1 pb-8">
+    <div class="min-h-full flex">
+
+      <div class="min-h-full flex-1 min-w-0 flex flex-col overflow-hidden">
+
+        <main class="min-h-full flex-1 flex overflow-hidden">
+          <div class="flex-1 flex flex-col overflow-y-auto xl:overflow-hidden">
+            <div class="min-h-full flex-1 flex xl:overflow-hidden">
+              {% include "settings/menu.html" %}
+              {% include "settings/mobilemenu.html" %}
+
+              <div class="flex-1 xl:overflow-y-auto">
+                  <div class="max-w-3xl mx-auto py-10 px-4 sm:px-6 lg:py-12 lg:px-8">
+                      <h1 class="text-3xl font-extrabold text-blue-gray-900">{% block settingstitle %}{% endblock settingstitle %}</h1>
+                      {% block settingscontent %}
+                      {% endblock settingscontent %}
+                  </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+</main>
+<style>
+.navsettings .active {
+    background-color: rgba(176, 132, 1, 1);
+}
+</style>
+{% endblock content %}

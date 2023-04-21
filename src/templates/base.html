@@ -1,0 +1,98 @@
+{% load static tailwind_tags tags %}
+
+{% url 'buildview:home' as home %}
+{% url 'buildview:servers' as servers %}
+{% url 'buildview:microservice' as microservice %}
+{% url 'buildview:clients' as clients %}
+{% url 'buildview:product' as product %}
+{% url 'providers:providers' as providers %}
+
+{% url 'settings:notifications' as notifications %}
+<!-- This is for the highlighting of the active section -->
+{% url 'settings:index' as settingsindex %}
+
+{% url 'demo:slides' as demo %}
+
+<!doctype html>
+<html class="h-screen bg-white-smoke" lang="en">
+    <head>
+        <meta charset='utf-8' name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta name="description" content="Dashboard" />
+        {% tailwind_css %}
+        <title>{% block title %} Dashboard {% endblock title %}</title>
+    </head>
+    <body class="h-full">
+        <div class="min-h-full">
+            {% if user.is_authenticated %}
+              <!-- Navigation -->
+              {% include "sidebar-mobile.html" %}
+              {% include "sidebar.html" %}
+
+              <div class="lg:pl-64 flex flex-col flex-1">
+                  {% include "topbar.html" %}
+                  {% block content %}{% endblock content %}
+              </div>
+            {% else %}
+                {% include "errorpages/not_logged_in.html" %}
+            {% endif %}
+        </div>
+    </body>
+    {% include "footer.html" %}
+</html>
+<style>
+.navsidebar .active {
+    color: #FAF6F2;
+    background-color: #D49E8D;
+}
+</style>
+<script>
+    var openuserdropdown = document.querySelectorAll('.userdropdown-open')
+    for (var i = 0; i < openuserdropdown.length; i++) {
+      openuserdropdown[i].addEventListener('click', function(event){
+    	event.preventDefault()
+    	toggleUserdropdown()
+      })
+    }
+
+    var openmobilemenu = document.querySelectorAll('.mobilemenu-open')
+    for (var i = 0; i < openmobilemenu.length; i++) {
+      openmobilemenu[i].addEventListener('click', function(event){
+    	event.preventDefault()
+    	toggleMobileMenu()
+      })
+    }
+
+    document.onkeydown = function(evt) {
+      evt = evt || window.event
+      var isEscape = false
+      if ("key" in evt) {
+    	isEscape = (evt.key === "Escape" || evt.key === "Esc")
+      } else {
+    	isEscape = (evt.keyCode === 27)
+      }
+      if (isEscape && document.body.classList.contains('userdropdown-active')) {
+    	toggleUserdropdown()
+      }
+      if (isEscape && document.body.classList.contains('mobilemenu-active')) {
+    	toggleMobileMenu()
+      }
+    };
+
+
+    function toggleUserdropdown () {
+      const body = document.querySelector('body')
+      const userdropdown = document.querySelector('.userdropdown')
+      userdropdown.classList.toggle('hidden')
+      userdropdown.classList.toggle('pointer-events-none')
+      body.classList.toggle('userdropdown-active')
+    }
+
+    function toggleMobileMenu () {
+      const body = document.querySelector('body')
+      const userdropdown = document.querySelector('.mobilemenu')
+      userdropdown.classList.toggle('hidden')
+      body.classList.toggle('mobilemenu-active')
+    }
+
+
+  </script>

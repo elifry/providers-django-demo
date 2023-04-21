@@ -1,0 +1,53 @@
+{% load static tailwind_tags tags %}
+
+<!doctype html>
+<html class="h-full bg-white-smoke" lang="en">
+    <head>
+        <meta charset='utf-8' name="viewport" content="initial-scale=1.0, width=device-width"/>
+        <meta name="description" content="Dashboard login" />
+        <meta name="keywords" content="login" />
+        {% tailwind_css %}
+        <title>Dashboard login</title>
+    </head>
+    <body class="h-full">
+        <div class="min-h-full flex">
+            <div class="hidden lg:block relative w-0 flex-1">
+              <img class="absolute inset-0 h-full w-full object-cover" src="{% static 'images/mountain.jpg' %}" alt="" width="3840" height="2160" />
+            </div>
+          <div class="flex-1 flex flex-col justify-center py-12 px-2 sm:px-4 lg:flex-none lg:px-20 xl:px-24">
+            <div class="mx-auto w-full max-w-sm lg:w-96">
+              <div>
+                <h2 class="mt-6 text-3xl font-extrabold text-gray-900">Dashboard sign in</h2>
+              </div>
+
+              <div class="mt-8">
+
+                <div class="mt-6">
+                  <form method="post" class="space-y-6">
+                      {% csrf_token %}
+                    <div>
+                      <label for="email" class="block text-sm font-medium text-gray-700"> Email address </label>
+                      <div class="mt-1">
+                        <input id="id_username" name="username" type="email" autocomplete="username" required class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-tan focus:border-tan sm:text-sm" />
+                      </div>
+                    </div>
+
+                    <div class="space-y-1">
+                      <label for="password" class="block text-sm font-medium text-gray-700"> Password </label>
+                      <div class="mt-1">
+                        <input id="id_password" name="password" type="password" autocomplete="current-password" required class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-tan focus:border-tan sm:text-sm" />
+                      </div>
+                    </div>
+
+                    <div class="pt-6">
+                      <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-black bg-tan hover:bg-dark-goldenrod focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-tan">Sign in</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </body>
+    {% include "footer.html" %}
+</html>

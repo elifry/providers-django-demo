@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% block title %} {{ viewName }} {% endblock %}
+{% load static tailwind_tags tags %}
+{% block content %}
+<main class="flex-1 pb-8">
+    <!-- Including all the tailwind classes used here, DO NOT REMOVE - needed since we apply ternary logic inline in the class names -->
+    <!-- <span class="text-green-500 text-red-500 bg-green-100 bg-red-100 text-green-800 text-red-800"></span> -->
+
+  <div class="mt-8">
+      <!-- Overview Section -->
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h1 class="text-lg leading-6 font-medium text-dark-goldenrod">{% user_welcome "Eli" "not" %}</h1><br>
+      <h2 class="text-lg leading-6 font-medium text-dark-goldenrod">Overview</h2>
+      <div class="mt-2 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <!-- Cards for each project -->
+        {% for the_project in projects %}
+        <div class="bg-dust-storm overflow-hidden shadow rounded-lg">
+          <div class="p-5">
+            <div class="flex items-center">
+              <div class="flex-shrink-0">
+                <svg class="h-6 w-6 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                    {{ the_project.svg_path | safe }}
+                </svg>
+              </div>
+              <div class="ml-5 w-0 flex-1">
+                <dl>
+                  <dt class="text-sm font-medium text-van-dyke-brown truncate">{{ the_project.name }}</dt>
+                  <dd>
+                    <div class="text-xs font-medium text-tan">{{ the_project.branch }} <span class="text-xs font-thin text-tan">{{ the_project.version }}</span></div>
+                  </dd>
+                  <dd>
+                      <div class="pt-2 text-lg font-medium text-{% if the_project.status == 'Success' %}green{% elif the_project.status == 'Failure' %}red{% else %}gray{% endif %}-500">
+                        {{ the_project.status }}
+                        <span class="text-xs font-thin text-gray-500">{{ the_project.note }}</span>
+                    </div>
+                  </dd>
+                </dl>
+              </div>
+            </div>
+          </div>
+          <div class="bg-dust-storm px-5 py-3">
+            <div class="text-sm">
+              <a href="#" class="font-medium text-van-dyke-brown hover:text-tan"> View </a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Recent activity Section -->
+    <h2 class="max-w-6xl mx-auto mt-8 px-4 text-lg leading-6 font-medium text-dark-goldenrod sm:px-6 lg:px-8">Recent activity</h2>
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col mt-2">
+        <div class="align-middle min-w-full overflow-x-auto shadow overflow-hidden sm:rounded-lg">
+          <table class="min-w-full divide-y divide-gray-200">
+            <thead>
+              <tr>
+                <th class="px-6 py-3 bg-white-smoke text-right text-xs font-medium text-tan uppercase tracking-wider" scope="col">Status</th>
+                <th class="px-6 py-3 bg-white-smoke text-left text-xs font-medium text-tan uppercase tracking-wider" scope="col">Name</th>
+                <th class="hidden px-6 py-3 bg-white-smoke text-left text-xs font-medium text-tan uppercase tracking-wider md:block" scope="col">Branch</th>
+                <th class="px-6 py-3 bg-white-smoke text-right text-xs font-medium text-tan uppercase tracking-wider" scope="col">Date</th>
+              </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+                {% for entry in activity %}
+                <tr class="bg-white">
+                  <td class="px-6 py-4 text-right whitespace-nowrap text-sm text-gray-500">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-{% if entry.status == 'Success' %}green{% else %}red{% endif %}-100 text-{% if entry.status == 'Success' %}green{% else %}red{% endif %}-800 capitalize">{{ entry.status }}</span>
+                  </td>
+                  <td class="max-w-0 w-full px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                    <div class="flex">
+                      <a href="#" class="group inline-flex space-x-2 truncate text-sm">
+                        <p class="text-gray-500 truncate group-hover:text-gray-900">{{ entry.project_slug }} {{ entry.version }}</p>
+                      </a>
+                    </div>
+                  </td>
+                  <td class="hidden px-6 py-4 whitespace-nowrap text-sm text-gray-500 md:block">
+                    <span class="text-gray-900 font-medium">{{ entry.branch }}</span>
+                  </td>
+                  <td class="px-6 py-4 text-right whitespace-nowrap text-sm text-gray-500">
+                    <time datetime="2020-07-11">{{ entry.started }}</time>
+                  </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+          </table>
+          <!-- Pagination -->
+          <nav class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6" aria-label="Pagination">
+            <div class="hidden sm:block">
+              <p class="text-sm text-gray-700">
+                Showing
+                <span class="font-medium">1</span>
+                to
+                <span class="font-medium">10</span>
+                of
+                <span class="font-medium">20</span>
+                results
+              </p>
+            </div>
+            <div class="flex-1 flex justify-between sm:justify-end">
+              <a href="#" class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-white-smoke"> Previous </a>
+              <a href="#" class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-white-smoke"> Next </a>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock %}

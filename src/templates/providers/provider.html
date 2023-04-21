@@ -1,0 +1,72 @@
+{% load static tailwind_tags %}
+
+<li>
+	<a href="#" class="block hover:bg-white-smoke">
+		<div class="px-4 py-4 flex items-center sm:px-6">
+			<div class="min-w-0 flex-1 sm:flex sm:items-center sm:justify-between">
+				<div class="truncate">
+					<div class="flex text-sm">
+						<span class="mt-2 flex items-center text-sm text-gray-500">
+                            {{ the_provider.first_name }} {{ the_provider.last_name }}
+                            {% if the_provider.active == True %}
+                            <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-green-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                            </svg> Active
+                            {% else %}
+                            <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-red-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+                            </svg> Not Active
+                            {% endif %}
+                        </span>
+					</div>
+					<div class="mt-2 flex">
+						<div class="flex items-center text-sm text-gray-500">
+							<p class="mt-2 flex items-center text-sm text-gray-500">
+								<div class="pt-2 px-4 text-sm"><p class="font-medium text-tan truncate">Rating: {{ the_provider.rating }}/10</p></div>
+							</p>
+						</div>
+					</div>
+				</div>
+                <div class="mt-4 flex-1 sm:mt-0 sm:ml-5">
+					<div class="flex-1 overflow-hidden -space-x-1">
+						<div class="flex-1 items-start">
+							<div class="pt-2 px-4 text-sm"><p class="font-medium text-tan truncate">{{ the_provider.company }}</p></div>
+							<div class="pt-2 px-4 text-sm"><p class="ml-1 flex-shrink-0 font-normal text-gray-500">
+								<span class="mt-2 flex items-center text-sm text-gray-500">
+									Country: {{ the_provider.country }}
+								</span>
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+                <div class="mt-4 flex-1 sm:mt-0 sm:ml-5">
+					<div class="flex-1 overflow-hidden -space-x-1">
+						<div class="flex-1 items-start">
+							<div class="pt-2 px-4 text-sm"><p class="font-medium text-tan truncate">{{ the_provider.primary_skills }}</p></div>
+							<div class="pt-2 px-4 text-sm"><p class="ml-1 flex-shrink-0 font-normal text-gray-500">
+								<span class="mt-2 flex items-center text-sm text-gray-500">
+									{{ the_provider.secondary_skill }}
+								</span>
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mt-4 flex-1 sm:mt-0 sm:ml-5">
+					<div class="flex-1 overflow-hidden -space-x-1">
+						<div class="flex-1 items-start">
+							<div class="pt-2 px-4 text-sm"><p class="font-medium text-tan truncate">Born: {{ the_provider.birth_date }} {{ the_provider.sex }}</p></div>
+							<div class="pt-2 px-4 text-sm"><p class="ml-1 flex-shrink-0 font-normal text-gray-500">
+								<span class="mt-2 flex items-center text-sm text-gray-500">
+									Language: {{ the_provider.language }}
+								</span>
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</a>
+</li>

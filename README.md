@@ -1,4 +1,4 @@
-# Django-React Playground
+# Django Providers demo
 
 This is a flexible template meant as a playground (lots of non-functional code) built as a hybrid app with Django and React. You can easily add static pages with Django written in python, and dynamic views with React. It uses a SQLite database. Python 3 is required.
 

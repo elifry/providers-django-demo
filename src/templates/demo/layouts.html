@@ -1,9 +1,0 @@
-{% extends "demo/demo_base.html" %}
-{% block title %} Layouts {% endblock %}
-{% load static %}
-
-{% block content %}
-<li class="px-6 py-4"><a class="py-8 text-2xl font-extrabold text-gray-700 tracking-tight sm:text-2xl" href="{% url 'demo:dashboard-react-tailwind' %}">Dashboard layout in React with Tailwind styling</a></li>
-<li class="px-6 py-4"><a class="py-8 text-2xl font-extrabold text-gray-700 tracking-tight sm:text-2xl" href="{% url 'demo:dashboard-plain-tailwind' %}">Dashboard layout in plain html with Tailwind styling</a></li>
-<li class="px-6 py-4"><a class="py-8 text-2xl font-extrabold text-gray-700 tracking-tight sm:text-2xl" href="{% url 'demo:settings-tailwind' %}">Settings in plain html with Tailwind styling</a></li>
-{% endblock %}

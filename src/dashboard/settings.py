@@ -44,10 +44,8 @@ INSTALLED_APPS = [
     'tailwind',
     'users',
     'theme',
-    'demo',
     'errorpages',
     'settings',
-    'buildview',
     'providers',
     'django_browser_reload',
 ]

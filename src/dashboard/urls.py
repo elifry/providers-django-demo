@@ -3,10 +3,8 @@ from django.urls import include, path
 
 urlpatterns = [
     path('settings/', include('settings.urls')),
-    path('demo/', include('demo.urls')),
     path('buildadmin/', admin.site.urls),
     path("accounts/", include("django.contrib.auth.urls")),
-    path('', include('buildview.urls')),
     path('providers/', include('providers.urls')),
     path("__reload__/", include("django_browser_reload.urls")),
 ]
